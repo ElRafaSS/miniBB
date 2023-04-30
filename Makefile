@@ -1,10 +1,10 @@
 CROSS_COMPILE =
 CC = $(CROSS_COMPILE)gcc
 CFLAGS = -Wall -Werror
-TARGET = minibusybox_Rafael
+TARGET = minibusybox
 MKDIR_PATH =libCat
 LIBS = -lcat
-MAIN = minibusybox_Rafael.c
+MAIN = minibusybox.c
 
 .PHONY: all install clean
 all: $(TARGET)
