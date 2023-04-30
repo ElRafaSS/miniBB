@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-#include "touch.h"
-#include "chmod.h"
-#include "sleep.h"
-#include "cat.h"
-#include "rm.h"
+#include "libCat/cat.h"
 
 bool endsWith(char const *in, char const *comp);
 
@@ -16,15 +12,15 @@ int main(int argc, char* argv[])
    // select whether command is on, off, flash or status
    if(endsWith(cmd,"touch"))
    {
-      s_touch( argc, argv );
+//      s_touch( argc, argv );
    }
    else if (endsWith(cmd,"chmod"))
    {
-      s_chmod( argc, argv );
+//      s_chmod( argc, argv );
    }
    else if (endsWith(cmd,"sleep"))
    {
-      s_sleep( argc, argv );
+//      s_sleep( argc, argv );
    }
    else if ( endsWith(cmd,"cat"))
    {
@@ -32,7 +28,7 @@ int main(int argc, char* argv[])
    }
    else if ( endsWith(cmd,"rm"))
    {
-      s_rm( argc, argv );
+//      s_rm( argc, argv );
    }
    else
    {

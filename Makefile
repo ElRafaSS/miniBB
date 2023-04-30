@@ -1,19 +1,26 @@
-#CC=arm-linux-gnueabihf-gcc
-CC=gcc
-GFLAGS=-Wall -Wextra -pedantic
-TARGET=all
+CROSS_COMPILE =
+CC = $(CROSS_COMPILE)gcc
+CFLAGS = -Wall -Werror
+TARGET = minibusybox_Rafael
+MKDIR_PATH =libCat
+LIBS = -lcat
+MAIN = minibusybox_Rafael.c
 
-$(TARGET): minibusybox_Rafael.c common.h common.c sleep.h sleep.c rm.c rm.h touch.h touch.c chmod.h chmod.c
-	$(CC) $(CFLAGS) -o m minibusybox_Rafael.c common.c sleep.c rm.c cat.c touch.c chmod.c;
-	ln -s m sleep;ln -s m cat;ln -s m touch;ln -s m chmod;ln -s m rm
-com: minibusybox_Rafael.c common.h common.c sleep.h sleep.c rm.c rm.h touch.h touch.c chmod.h chmod.c cat.c cat.h
-	$(CC) $(CFLAGS) -o m minibusybox_Rafael.c common.c sleep.c rm.c cat.c touch.c chmod.c;
-	ln -s m sleep;ln -s m cat;ln -s m touch;ln -s m chmod;ln -s m rm
-link:
-	ln -s m sleep;ln -s m cat;ln -s m touch;ln -s m chmod;ln -s m rm
-main: main.c
-	$(CC) $(CFLAGS) -o $@ main.c
+.PHONY: all install clean
+all: $(TARGET)
+
+$(TARGET): main.o libcat.so
+	$(CC) $(CFLAGS) $< $(LIBS) -L. -o $@
+	ln -s $@ cat;
+main.o: $(MAIN)
+	$(CC) $(CFLAGS) -c $< -o $@
+libcat.so: $(MKDIR_PATH)/cat.c $(MKDIR_PATH)/cat.h
+	$(CC) $(CFLAGS) -c -fpic $< -o cat.o
+	$(CC) -shared -o $@ cat.o
+install: libcat.so
+	sudo cp $< /usr/lib
+	sudo cp $(MKDIR_PATH)/cat.h /usr/include
 clean:
-	rm sleep touch chmod cat rm m;
+	rm *.o *.so $(TARGET) cat
 
 

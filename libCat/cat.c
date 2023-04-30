@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <string.h>
-#include "common.h"
+//#include "common.h"
 #include <stdlib.h>
 #include "errno.h"
 
@@ -29,14 +29,14 @@ int s_cat(int argc, char *argv[])
             }
             else
             {
-                msgErrOption(stderr, &argv[0]);
+                //msgErrOption(stderr, &argv[0]);
                 errno = EPERM;
                 exit(errno);
             }
         }
         else
         {
-            msgMissingOp(stderr, &argv[0]);
+            //msgMissingOp(stderr, &argv[0]);
             errno = EPERM;
             exit(errno);
         }
@@ -62,7 +62,7 @@ int s_cat(int argc, char *argv[])
     fd = fopen(fPtr, "r");
     if (fd == NULL)
     {
-        msgErrorOpenFile( stderr, argv );
+        //msgErrorOpenFile( stderr, argv );
         errno = EPERM;
         exit(errno);
     }
