@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-#include "libCat/cat.h"
+//#include "libCat/cat.h"
+#include "libRm/rm.h"
 
 bool endsWith(char const *in, char const *comp);
 
@@ -24,11 +25,11 @@ int main(int argc, char* argv[])
    }
    else if ( endsWith(cmd,"cat"))
    {
-      s_cat( argc, argv );
+//      s_cat( argc, argv );
    }
    else if ( endsWith(cmd,"rm"))
    {
-//      s_rm( argc, argv );
+      s_rm( argc, argv );
    }
    else
    {
