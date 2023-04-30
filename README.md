@@ -1,0 +1,2 @@
+# miniBB
+Cross Compilation
